@@ -1,50 +1,137 @@
 Kubernetes through Minikube
 
-K8s.
-Kubernetes is a container management tool.
-Why does the kubernetes logo have 7 sticks?
-Because google made a project named “project seven”.
-
-Step : 
-Install docker
-
-Basic Kubernetes concepts like pods, services, and deployments.
-
-
-How to deploy and manage applications on Minikube.
-
-Command : minikube start
-
-nitesh@nitesh:~$ minikube start
-😄  minikube v1.32.0 on Ubuntu 22.04 (kvm/amd64)
-✨  Using the docker driver based on existing profile
-👍  Starting control plane node minikube in cluster minikube
-🚜  Pulling base image ...
-🔄  Restarting existing docker container for "minikube" ...
-🐳  Preparing Kubernetes v1.28.3 on Docker 24.0.7 ...
-🔗  Configuring bridge CNI (Container Networking Interface) ...
-🔎  Verifying Kubernetes components...
-    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
-🌟  Enabled addons: default-storageclass, storage-provisioner
-🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
-nitesh@nitesh:~$
-
-
-
-Command : kubectl cluster-info
-
-nitesh@nitesh:~$ kubectl cluster-info
-Kubernetes control plane is running at https://192.168.49.2:8443
-CoreDNS is running at https://192.168.49.2:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-
-To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-nitesh@nitesh:~$ 
 
 
 
 
 
 
+Table of Contents
+System Requirements	1
+Pre- requisite :	2
+Install Docker	2
+Install kubectl	4
+Install Minikube	6
+
+
+System Requirements
+CPU : 2 Cores or more
+RAM : 2 GB or More
+Storage : At Least 20 GB
+
+Pre- requisite :
+
+Install curl
+
+
+
+
+
+Install Docker
+
+
+Command : sudo apt update && sudo apt upgrade -y 
+
+This command updates the local package database, ensuring your system has the latest information about available packages and their versions and upgrade command upgrades all installed packages to their latest versions. The -y flag is used to automatically answer "yes" to any prompts, making the upgrade process non-interactive
+
+Command : sudo apt-get install ca-certificates curl gnupg 
+
+This installs the necessary packages, including CA certificates for secure communication, Curl for transferring data, and GnuPG for secure package signatures.
+
+Command : sudo install -m 0755 -d /etc/apt/keyrings 
+
+ This command creates a directory /etc/apt/keyrings with the appropriate permissions for storing keyring files.
+
+Command : curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg 
+
+ This downloads the Docker GPG key, and gpg --dearmor converts it into a format suitable for APT. The output is saved to /etc/apt/keyrings/docker.gpg.
+
+Command : sudo chmod a+r /etc/apt/keyrings/docker.gpg 
+
+ This command adjusts the permissions of the Docker GPG key file to make it readable
+
+Command : echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+echo : This command is used to print the Docker repository configuration to the console.
+
+"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable"
+
+This is the actual configuration line that specifies the Docker repository. It includes information about the system architecture, the GPG key for signature verification, the Docker repository URL, and the Ubuntu version codename.
+
+sudo tee /etc/apt/sources.list.d/docker.list > /dev/null 
+
+This part of the command takes the output of the echo command and writes it to the file /etc/apt/sources.list.d/docker.list. tee is used to write to the file, and > /dev/null is used to suppress the output on the console.
+
+Command : sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin : 
+
+This command installs the Docker engine (docker-ce), the Docker command-line interface (docker-ce-cli), and containerd (containerd.io). These are the core components needed to run Docker containers.
+
+As for the additional components you mentioned (docker-buildx-plugin and docker-compose-plugin), they are not standard Docker packages. Docker Buildx and Docker Compose are separate tools that you might install and use depending on your specific needs.
+
+sudo docker run hello-world 
+
+sudo : This is used to execute the Docker command with administrative privileges.
+
+docker run : This command is used to run a Docker container.
+
+hello-world : This is the name of the Docker image you are running. In this case, it's a simple and lightweight image provided by Docker called "hello-world."
+
+
+
+
+
+
+Install kubectl
+
+  Command : curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+curl -s https://dl.k8s.io/release/stable.txt
+
+ This command fetches the latest stable version of Kubernetes from the stable.txt file on the Kubernetes release page.
+
+$(curl -L -s https://dl.k8s.io/release/stable.txt)
+
+ This part of the command uses command substitution to include the version obtained in step 1 in the URL.https://dl.k8s.io/release/<version>/bin/linux/amd64/kubectl
+
+ This is the URL structure for the kubectl binary for Linux amd64 architecture.
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+ This final command downloads the kubectl binary using the constructed URL and the -LO flags to save the file with the same name as the remote file.
+
+Command : sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+
+sudo
+
+ This executes the command with administrative privileges.
+
+install
+
+ This is the install command, used to copy files and set attributes.
+
+-o root -g root
+
+ This sets the owner (-o) to root and the group (-g) to root. It ensures that the kubectl binary is owned by the root user and root group.
+
+-m 0755
+
+ This sets the file permissions (-m) to 0755. It grants read, write, and execute permissions to the owner (root) and read and execute permissions to others. This makes the kubectl binary executable by everyone.
+
+kubectl
+
+This is the source file (the kubectl binary you downloaded).
+
+/usr/local/bin/kubectl
+
+ This is the destination path where the kubectl binary will be installed.
+
+kubectl version --client
+
+The kubectl version --client command is used to check the client-side version of kubectl installed on your machine. It will display information about the Kubernetes client and the Kubernetes API server it interacts with.
 
 
 
@@ -52,8 +139,94 @@ nitesh@nitesh:~$
 
 
 
-Create deployment yaml file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Install Minikube 
+
+Command : curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+ This uses curl to download the latest Minikube binary for Linux (minikube-linux-amd64) from the specified URL.
+
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+ This install the downloaded binary into the /usr/local/bin directory, making it accessible system-wide. The install command is used with sudo to ensure the necessary permissions.
+
+sudo usermod -aG docker $USER && newgrp docker
+
+sudo
+
+Runs the command with superuser privileges.
+
+usermod
+
+Modifies a user account.
+
+-aG docker 
+
+Adds the user to the specified groups. Here, it's adding the user to the "docker" group.
+
+$USER  
+
+Represents the current username.
+So, this part is making you a member of the "docker" group.
+
+newgrp  
+
+This command is used to change your current group ID during a login session.
+
+docker
+
+The group you want to switch to.
+
+Command :minikube start
+
+minikube 
+
+This is the command-line tool for managing and interacting with Minikube, which is a tool that helps you run Kubernetes clusters locally for development and testing purposes.
+
+start
+
+This subcommand is telling Minikube to start a new Kubernetes cluster. When you run minikube start, it sets up a single-node Kubernetes cluster on your local machine.
+
+
+Create a file named “deployment yaml”
+
 Command : vi app-deployment.yaml
+
+vi
+
+This is a command-line text editor available on many Unix-like systems. It stands for Visual Editor.
+
+app-deployment.yaml
+
+This is the filename you want to open in the vi editor. It suggests that you're dealing with a YAML file, commonly used for defining Kubernetes resources like deployments.
+
+
 	Press i for “Write the following script”
 
 apiVersion: apps/v1
@@ -79,13 +252,7 @@ spec:
 
 
 
-Command :kubectl apply -f app-deployment.yaml
-
-
-
-
-
-
+Command : kubectl apply -f app-deployment.yaml
 
 kubectl : This is the command-line tool for interacting with Kubernetes clusters.
 
@@ -97,16 +264,17 @@ apply : This subcommand is used to apply a configuration to a resource. It's com
 
 app-deployment.yaml : It is the deployment file name.
 
-nitesh@nitesh:~$ vi app-deployment.yaml
-nitesh@nitesh:~$ kubectl apply -f app-deployment.yaml
-deployment.apps/myapp-deployment created
-nitesh@nitesh:~$
-
-
-
-
-
 Create service.yaml 
+
+Command : vi service.yaml
+
+
+vi
+
+This is a command-line text editor available on many Unix-like systems. It stands for Visual Editor.
+service.yaml
+
+This is the filename you want to open in the vi editor. The file extension ".yaml" suggests that you're dealing with a YAML file, which is commonly used for defining Kubernetes resources, and in this case, it could be a service configuration.
 
 	Press i for “Write the following script”
 
@@ -130,78 +298,81 @@ Press “Esc  :wq” to save
 
 
 
-
 Command : kubectl apply -f app-service.yaml
 
-kubectl : This is the command-line tool for interacting with Kubernetes clusters.
+kubectl 
 
-apply : This subcommand is used to apply a configuration to a resource. It's commonly used to create, update, or delete resources described in a YAML or JSON file.
+This is the command-line tool for interacting with Kubernetes clusters.
 
--f : This flag is followed by the filename or URL of the resource configuration file in YAML or JSON format. It specifies the file to be applied to the cluster.
+apply
 
-app-service.yaml : This is the YAML file that contains the configuration for your Kubernetes service. It specifies how the service should be set up, including details like the service type (NodePort, LoadBalancer, ClusterIP), ports, selectors to route traffic to pods, etc.
+This subcommand is used to apply a configuration to a resource. It's commonly used to create, update, or delete resources described in a YAML or JSON file.
 
+-f 
 
+This flag is followed by the filename or URL of the resource configuration file in YAML or JSON format. It specifies the file to be applied to the cluster.
 
+app-service.yaml
 
+This is the YAML file that contains the configuration for your Kubernetes service. It specifies how the service should be set up, including details like the service type (NodePort, LoadBalancer, ClusterIP), ports, selectors to route traffic to pods, etc.
 
-minikube service myapp-service
+Command : minikube service myapp-service
 
+minikube 
 
-kubectl scale deployment myapp-deployment --replicas=10
+The command-line tool for managing Minikube and Kubernetes clusters.
 
-nitesh@nitesh:~$ kubectl scale deployment myapp-deployment --replicas=10
-deployment.apps/myapp-deployment scaled
-nitesh@nitesh:~$
+service
 
+ This is a subcommand of Minikube used to expose a Kubernetes service.
 
-kubectl get pods,svc,deploy
+myapp-service
 
-nitesh@nitesh:~$ kubectl get pods,svc,deploy
-NAME                                	READY   STATUS          	RESTARTS    	AGE
-pod/myapp-deployment-5c9899c99b-5fv7n   1/1 	Running         	3 (9m50s ago)   7h59m
-pod/myapp-deployment-5c9899c99b-cl7n4   0/1 	ContainerCreating   0           	26s
-pod/myapp-deployment-5c9899c99b-cxqvf   1/1 	Running         	2 (9m50s ago)   7h59m
-pod/myapp-deployment-5c9899c99b-fmzxt   1/1 	Running         	2 (9m50s ago)   7h59m
-pod/myapp-deployment-5c9899c99b-gppvn   0/1 	ContainerCreating   0           	25s
-pod/myapp-deployment-5c9899c99b-gvvfk   1/1 	Running         	2 (9m50s ago)   6h57m
-pod/myapp-deployment-5c9899c99b-hd7xj   0/1 	ContainerCreating   0           	26s
-pod/myapp-deployment-5c9899c99b-knlbv   0/1 	ContainerCreating   0           	26s
-pod/myapp-deployment-5c9899c99b-qd999   0/1 	ContainerCreating   0           	25s
-pod/myapp-deployment-5c9899c99b-wlq9t   1/1 	Running         	2 (9m50s ago)   6h57m
-pod/testpod                         	0/1 	Error           	0           	6d1h
+ The name of the Kubernetes service you want to expose. Replace this with the actual name of the service you have deployed in your cluster.
 
-NAME                	TYPE    	CLUSTER-IP   	EXTERNAL-IP   PORT(S)    	AGE
-service/kubernetes  	ClusterIP   10.96.0.1    	<none>    	443/TCP    	6d1h
-service/myapp-service   NodePort	10.102.172.169   <none>    	80:32160/TCP   7h28m
+Command : kubectl get pods,svc,deploy
 
-NAME                           	READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/myapp-deployment   5/10	10       	5       	7h59m
-nitesh@nitesh:~$
+kubectl 
 
+The command-line tool for interacting with Kubernetes clusters.
 
+get
 
-minikube stop
+ This is a command to retrieve resources from the cluster.
 
-nitesh@nitesh:~$  minikube stop
-✋  Stopping node "minikube"  ...
-🛑  Powering off "minikube" via SSH ...
-🛑  1 node stopped.
-nitesh@nitesh:~$
+pods,svc,deploy: 
 
+These are the resource types you're asking for:
 
+pods
 
+Fetches information about running pods in the cluster.
 
+svc or services
 
-minikube delete
+Retrieves details about services.
 
-nitesh@nitesh:~$ minikube delete
-🔥  Deleting "minikube" in docker ...
-🔥  Deleting container "minikube" ...
-🔥  Removing /home/nitesh/.minikube/machines/minikube ...
-💀  Removed all traces of the "minikube" cluster.
-nitesh@nitesh:~$
+deploy or deployments
 
+Fetches information about deployments.
 
+Command : minikube stop
 
+minikube
+
+The command-line tool for managing Minikube and Kubernetes clusters.
+
+stop
+
+This is a subcommand of Minikube used to stop a running cluster.
+
+Command : minikube delete
+
+minikube
+
+The command-line tool for managing Minikube and Kubernetes clusters.
+
+delete
+
+This subcommand is used to delete an existing Minikube cluster.
 
