@@ -29,40 +29,43 @@
 
 
 # Pre- requisite :<a id="pre--requisite-"></a>
-
+```
 Install curl
-
+```
 
 # Install Docker<a id="install-docker"></a>
-
-**Command : sudo apt update && sudo apt upgrade -y** 
-
+```
+sudo apt update && sudo apt upgrade -y
+```
 This command updates the local package database, ensuring your system has the latest information about available packages and their versions and upgrade command upgrades all installed packages to their latest versions. The -y flag is used to automatically answer "yes" to any prompts, making the upgrade process non-interactive
-
-**Command : sudo apt-get install ca-certificates curl gnupg** 
-
+```
+sudo apt-get install ca-certificates curl gnupg
+```
 This installs the necessary packages, including CA certificates for secure communication, Curl for transferring data, and GnuPG for secure package signatures.
-
-**Command : sudo install -m 0755 -d /etc/apt/keyrings** 
+```
+sudo install -m 0755 -d /etc/apt/keyrings** 
+```
 
  This command creates a directory /etc/apt/keyrings with the appropriate permissions for storing keyring files.
-
-**Command : curl -fsSL https\://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg** 
-
+ 
+```
+curl -fsSL https\://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
  This downloads the Docker GPG key, and gpg --dearmor converts it into a format suitable for APT. The output is saved to /etc/apt/keyrings/docker.gpg.
-
-**Command : sudo chmod a+r /etc/apt/keyrings/docker.gpg** 
-
+```
+sudo chmod a+r /etc/apt/keyrings/docker.gpg 
+```
  This command adjusts the permissions of the Docker GPG key file to make it readable
 
-**Command : echo \\**
+```
+echo \\
 
-  **"deb \[arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https\://download.docker.com/linux/ubuntu \\**
+  "deb \[arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https\://download.docker.com/linux/ubuntu \\
 
-  **$(. /etc/os-release && echo "$VERSION\_CODENAME") stable" | \\**
+  $(. /etc/os-release && echo "$VERSION\_CODENAME") stable" | \\
 
-  **sudo tee /etc/apt/sources.list.d/docker.list > /dev/null**
-
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
 **echo :** This command is used to print the Docker repository configuration to the console.
 
 **"deb \[arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https\://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION\_CODENAME") stable"**
@@ -72,9 +75,9 @@ This is the actual configuration line that specifies the Docker repository. It i
 **sudo tee /etc/apt/sources.list.d/docker.list > /dev/null** 
 
 This part of the command takes the output of the echo command and writes it to the file /etc/apt/sources.list.d/docker.list. tee is used to write to the file, and > /dev/null is used to suppress the output on the console.
-
-**Command : sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin :** 
-
+```
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
 This command installs the Docker engine (docker-ce), the Docker command-line interface (docker-ce-cli), and containerd (containerd.io). These are the core components needed to run Docker containers.
 
 As for the additional components you mentioned (docker-buildx-plugin and docker-compose-plugin), they are not standard Docker packages. Docker Buildx and Docker Compose are separate tools that you might install and use depending on your specific needs.
