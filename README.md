@@ -21,6 +21,8 @@
 
 # System Requirements<a id="system-requirements"></a>
 
+**Operating System :** Ubuntu 22.04.3 LTS
+
 **CPU :** 2 Cores or more
 
 **RAM :** 2 GB or More
