@@ -31,9 +31,9 @@
 
 
 # Pre- requisite :<a id="pre--requisite-"></a>
-```
+
 Install curl
-```
+
 
 # Install Docker<a id="install-docker"></a>
 ```
@@ -45,7 +45,7 @@ sudo apt-get install ca-certificates curl gnupg
 ```
 This installs the necessary packages, including CA certificates for secure communication, Curl for transferring data, and GnuPG for secure package signatures.
 ```
-sudo install -m 0755 -d /etc/apt/keyrings** 
+sudo install -m 0755 -d /etc/apt/keyrings
 ```
 
  This command creates a directory /etc/apt/keyrings with the appropriate permissions for storing keyring files.
