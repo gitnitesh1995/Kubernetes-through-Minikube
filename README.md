@@ -214,37 +214,21 @@ This is the filename you want to open in the vi editor. It suggests that you're 
 Press i for “Write the following script”
 
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
   name: myapp-deployment
-
 spec:
-
   replicas: 3
-
   selector:
-
     matchLabels:
-
       app: myapp
-
   template:
-
     metadata:
-
       labels:
-
         app: myapp
-
     spec:
-
       containers:
-
       - name: myapp-container
-
         image: nginx:latest
 
  Press “Esc  :wq” to save
