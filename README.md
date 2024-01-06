@@ -199,15 +199,15 @@ This is the command-line tool for managing and interacting with Minikube, which 
 
 This subcommand is telling Minikube to start a new Kubernetes cluster. When you run minikube start, it sets up a single-node Kubernetes cluster on your local machine.
 
-**Create a file named “deployment yaml”**
+**Create a file named “nginx-deployment.yaml”**
 ```
-vi app-deployment.yaml
+vi nginx-deployment.yaml
 ```
 **vi**
 
 This is a command-line text editor available on many Unix-like systems. It stands for Visual Editor.
 
-**app-deployment.yaml**
+**nginx-deployment.yaml**
 
 This is the filename you want to open in the vi editor. It suggests that you're dealing with a YAML file, commonly used for defining Kubernetes resources like deployments.
 
@@ -216,20 +216,23 @@ Press i for “Write the following script”
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-deployment
+  name: nginx-deployment
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: myapp
-  template:
-    metadata:
-      labels:
-        app: myapp
-    spec:
-      containers:
-      - name: myapp-container
-        image: nginx:latest
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
 ````
  Press “Esc  :wq” to save
 
@@ -243,19 +246,17 @@ kubectl apply -f app-deployment.yaml
 
 **-f :** This flag is followed by the filename or URL of the resource configuration file in YAML or JSON format. It specifies the file to be applied to the cluster.
 
- **app-deployment.yaml  :** This is the YAML file that contains the specifications for your application deployment, such as the container image, replicas, ports, etc.
+ **nginx-deployment.yaml  :** This is the YAML file that contains the specifications for your application deployment, such as the container image, replicas, ports, etc. It is the deployment file name.
 
-**app-deployment.yaml :** It is the deployment file name.
-
-**Create service.yaml** 
+**Create nginx-service.yaml** 
 ```
-vi service.yaml
+vi nginx-service.yaml
 ```
 **vi**
 
 This is a command-line text editor available on many Unix-like systems. It stands for Visual Editor.
 
-**service.yaml**
+**nginx-service.yaml**
 
 This is the filename you want to open in the vi editor. The file extension ".yaml" suggests that you're dealing with a YAML file, which is commonly used for defining Kubernetes resources, and in this case, it could be a service configuration.
 
@@ -264,21 +265,22 @@ Press i for “Write the following script”
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-service
+  name: nginx-service
 spec:
-  selector:
-    app: myapp
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: NodePort
+  selector:
+    app: nginx
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: NodePort
+
 ```
 Press “Esc  :wq” to save
 
 ![](https://lh7-us.googleusercontent.com/4As4Lkw76k-XW_Ib7FBrVX8JgqQOJWjK_C3VgsH-JmhDydV8J198Gb-8-LLoaK52XQF5guJIFFsh5xS6lZXgLNBpCHBG51wEImuE0-I1u0BB0fUq_ixPzmzJOdconNmWq8u5zQCzKXsL_PhHgs_G-6A)
 ```
-kubectl apply -f app-service.yaml
+kubectl apply -f nginx-service.yaml
 ```
 **kubectl** 
 
@@ -292,11 +294,11 @@ This subcommand is used to apply a configuration to a resource. It's commonly us
 
 This flag is followed by the filename or URL of the resource configuration file in YAML or JSON format. It specifies the file to be applied to the cluster.
 
-**app-service.yaml**
+**nginx-service.yaml**
 
 This is the YAML file that contains the configuration for your Kubernetes service. It specifies how the service should be set up, including details like the service type (NodePort, LoadBalancer, ClusterIP), ports, selectors to route traffic to pods, etc.
 ```
-minikube service myapp-service
+minikube service nginx-service
 ```
 **minikube** 
 
@@ -306,7 +308,7 @@ The command-line tool for managing Minikube and Kubernetes clusters.
 
  This is a subcommand of Minikube used to expose a Kubernetes service.
 
-**myapp-service**
+**nginx-service**
 
  The name of the Kubernetes service you want to expose. Replace this with the actual name of the service you have deployed in your cluster.
 ```
