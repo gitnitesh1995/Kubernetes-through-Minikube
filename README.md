@@ -100,7 +100,7 @@ sudo docker run hello-world
 
 # Install kubectl<a id="install-kubectl"></a>
 ```
-curl -LO "https\://dl.k8s.io/release/$(curl -L -s https\://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 ```
 **curl -s** [**https://dl.k8s.io/release/stable.txt**](https://dl.k8s.io/release/stable.txt)
 
