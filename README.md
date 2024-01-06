@@ -60,13 +60,10 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg 
  This command adjusts the permissions of the Docker GPG key file to make it readable
 
 ```
-echo \\
-
-  "deb \[arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https\://download.docker.com/linux/ubuntu \\
-
-  $(. /etc/os-release && echo "$VERSION\_CODENAME") stable" | \\
-
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 **echo :** This command is used to print the Docker repository configuration to the console.
 
