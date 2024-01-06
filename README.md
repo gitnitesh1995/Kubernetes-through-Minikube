@@ -81,6 +81,14 @@ This command installs the Docker engine (docker-ce), the Docker command-line int
 
 As for the additional components you mentioned (docker-buildx-plugin and docker-compose-plugin), they are not standard Docker packages. Docker Buildx and Docker Compose are separate tools that you might install and use depending on your specific needs.
 ```
+sudo apt-get update
+```
+sudo: It stands for "superuser do," and it's used to execute commands with elevated privileges. Essentially, it allows you to run commands as the administrator or root user.
+
+apt-get: This is the package management command-line tool on Debian-based systems. It's used for handling packages—installing, updating, and removing them.
+
+update: This specific sub-command is telling apt-get to update its package information. It doesn't actually update the packages themselves; instead, it fetches the latest information about available packages from the repositories.
+```
 sudo docker run hello-world
 ```
 **sudo :** This is used to execute the Docker command with administrative privileges.
