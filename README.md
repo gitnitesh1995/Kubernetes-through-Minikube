@@ -212,7 +212,7 @@ This is a command-line text editor available on many Unix-like systems. It stand
 This is the filename you want to open in the vi editor. It suggests that you're dealing with a YAML file, commonly used for defining Kubernetes resources like deployments.
 
 Press i for “Write the following script”
-
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -230,7 +230,7 @@ spec:
       containers:
       - name: myapp-container
         image: nginx:latest
-
+````
  Press “Esc  :wq” to save
 
 ![](https://lh7-us.googleusercontent.com/SEyk3C41oIMlEAO7kTPbgBiONLyvHPBjAsdAJROHcwKbJ4nhyylmPdafXY3cFX5rk98QUCM-zI1UerlRJ0oODe0OWkQXXluSgz_NVSefVY5E46lF_Ss0F6wwX2G7eV_vws1PQNYKkvXxiXoU9lgP1N0)
@@ -260,31 +260,20 @@ This is a command-line text editor available on many Unix-like systems. It stand
 This is the filename you want to open in the vi editor. The file extension ".yaml" suggests that you're dealing with a YAML file, which is commonly used for defining Kubernetes resources, and in this case, it could be a service configuration.
 
 Press i for “Write the following script”
-
+```
 apiVersion: v1
-
 kind: Service
-
 metadata:
-
   name: myapp-service
-
 spec:
-
   selector:
-
     app: myapp
-
   ports:
-
     - protocol: TCP
-
       port: 80
-
       targetPort: 80
-
   type: NodePort
-
+```
 Press “Esc  :wq” to save
 
 ![](https://lh7-us.googleusercontent.com/4As4Lkw76k-XW_Ib7FBrVX8JgqQOJWjK_C3VgsH-JmhDydV8J198Gb-8-LLoaK52XQF5guJIFFsh5xS6lZXgLNBpCHBG51wEImuE0-I1u0BB0fUq_ixPzmzJOdconNmWq8u5zQCzKXsL_PhHgs_G-6A)
