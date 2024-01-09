@@ -235,7 +235,7 @@ sudo usermod -aG docker $USER && newgrp docker
 ```
 **sudo :**
 
-Runs the command with superuser privileges.
+It stands for "superuser do" and  permits user to execute a command as the superuser.
 
 **usermod :**
 
