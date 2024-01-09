@@ -350,78 +350,78 @@ Press “Esc  :wq” to save
 ```
 kubectl apply -f nginx-service.yaml
 ```
-**kubectl** 
+**kubectl :** 
 
 This is the command-line tool for interacting with Kubernetes clusters.
 
-**apply**
+**apply :**
 
 This subcommand is used to apply a configuration to a resource. It's commonly used to create, update, or delete resources described in a YAML or JSON file.
 
-**-f** 
+**-f :** 
 
 This flag is followed by the filename or URL of the resource configuration file in YAML or JSON format. It specifies the file to be applied to the cluster.
 
-**nginx-service.yaml**
+**nginx-service.yaml :**
 
 This is the YAML file that contains the configuration for your Kubernetes service. It specifies how the service should be set up, including details like the service type (NodePort, LoadBalancer, ClusterIP), ports, selectors to route traffic to pods, etc.
 ```
 minikube service nginx-service
 ```
-**minikube** 
+**minikube :** 
 
 The command-line tool for managing Minikube and Kubernetes clusters.
 
-**service**
+**service :**
 
  This is a subcommand of Minikube used to expose a Kubernetes service.
 
-**nginx-service**
+**nginx-service :**
 
  The name of the Kubernetes service you want to expose. Replace this with the actual name of the service you have deployed in your cluster.
 ```
 kubectl get pods,svc,deploy
 ```
-**kubectl** 
+**kubectl :** 
 
 The command-line tool for interacting with Kubernetes clusters.
 
-**get**
+**get :**
 
  This is a command to retrieve resources from the cluster.
 
-**pods,svc,deploy:** 
+**pods,svc,deploy :** 
 
 These are the resource types you're asking for:
 
-**pods**
+**pods :**
 
 Fetches information about running pods in the cluster.
 
-**svc or services**
+**svc or services :**
 
 Retrieves details about services.
 
-**deploy or deployments**
+**deploy or deployments :**
 
 Fetches information about deployments.
 ```
 minikube stop
 ```
-**minikube**
+**minikube :**
 
 The command-line tool for managing Minikube and Kubernetes clusters.
 
-**stop**
+**stop :**
 
 This is a subcommand of Minikube used to stop a running cluster.
 ```
  minikube delete
 ```
-**minikube**
+**minikube :**
 
 The command-line tool for managing Minikube and Kubernetes clusters.
 
-**delete**
+**delete :**
 
 This subcommand is used to delete an existing Minikube cluster.
