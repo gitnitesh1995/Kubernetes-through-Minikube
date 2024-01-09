@@ -45,45 +45,49 @@ This command updates the local package database, ensuring your system has the la
 ```
 sudo apt-get install ca-certificates curl gnupg
 ```
-sudo :
+**sudo :**
 
 It stands for "superuser do" and  permits user to execute a command as the superuser 
 
-apt-get:
+**apt-get :**
 
 apt-get is a command-line tool used for package management on Debian-based systems. It allows users to install, upgrade, or remove software packages.
 
-install:
+**install :**
 
 This is an argument specifying that the operation to be performed is the installation of one or more packages.
 
-ca-certificates:
+**ca-certificates :**
 
 This is the name of the first package to be installed. It includes a set of trusted certificate authorities (CAs) that the system can use to verify the authenticity of SSL/TLS certificates.
 
-curl:
+**curl :**
 
 This is the name of the second package to be installed. curl is a command-line tool for making HTTP requests. It is often used for downloading files, interacting with APIs, and testing web services.
 
-gnupg:
+**gnupg :**
 
 This is the name of the third package to be installed. gnupg (GnuPG) is a complete and free implementation of the OpenPGP standard. It is used for secure communication and data integrity verification.
 ```
 sudo install -m 0755 -d /etc/apt/keyrings
 ```
-sudo : It stands for "superuser do" and  permits user to execute a command as the superuser 
+**sudo :**
 
-install:
+It stands for "superuser do" and  permits user to execute a command as the superuser 
+
+**install :**
 
 install is a Unix command that is typically used for copying files and setting attributes during the copy process. In this case, it's being used to create a directory.
--m 0755:
+
+**-m 0755 :**
 
 The -m flag specifies the permissions (mode) to set for the directory being created. In this case, 0755 represents the octal notation for the permissions. Here's the breakdown:
 0: No special permissions.
 7: Read, write, and execute permissions for the owner.
 5: Read and execute permissions for the group.
 5: Read and execute permissions for others (users not in the owner or group).
--d:
+
+**-d :**
 
 The -d flag is used to indicate that the install command should treat the destination as a directory. It ensures that the specified path is treated as a directory, and the directory is created if it doesn't exist.
 /etc/apt/keyrings:
@@ -97,15 +101,15 @@ curl -fsSL https\://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o
 ```
 sudo chmod a+r /etc/apt/keyrings/docker.gpg 
 ```
-sudo : 
+**sudo :**
 
 It stands for "superuser do" and  permits user to execute a command as the superuser.
 
-chmod:
+**chmod :**
 
 chmod is a Unix command used to change the permissions of a file or directory.
 
-a+r:
+**a+r :**
 
 The a+r specifies the permissions to be added. In this case, it stands for "all users" (owner, group, and others) and "read" permission.
 
@@ -137,23 +141,29 @@ As for the additional components you mentioned (docker-buildx-plugin and docker-
 ```
 sudo apt-get update
 ```
-sudo : 
+**sudo :**
 
 It stands for "superuser do" and  permits user to execute a command as the superuser.
 
-apt-get: This is the package management command-line tool on Debian-based systems. It's used for handling packages—installing, updating, and removing them.
+**apt-get :**
+
+This is the package management command-line tool on Debian-based systems. It's used for handling packages—installing, updating, and removing them.
 
 update: This specific sub-command is telling apt-get to update its package information. It doesn't actually update the packages themselves; instead, it fetches the latest information about available packages from the repositories.
 ```
 sudo docker run hello-world
 ```
-sudo : 
+**sudo :**
 
 It stands for "superuser do" and  permits user to execute a command as the superuser.
 
-docker run : This command is used to run a Docker container.
+**docker run :**
 
-hello-world : This is the name of the Docker image you are running. In this case, it's a simple and lightweight image provided by Docker called "hello-world."
+This command is used to run a Docker container.
+
+**hello-world :**
+
+This is the name of the Docker image you are running. In this case, it's a simple and lightweight image provided by Docker called "hello-world."
 
 
 # Install kubectl<a id="install-kubectl"></a>
