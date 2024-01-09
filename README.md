@@ -188,27 +188,27 @@ curl -LO "https\://dl.k8s.io/release/$(curl -L -s [https://dl.k8s.io/release/sta
 ```
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
-sudo : 
+**sudo :**
 
 It stands for "superuser do" and  permits user to execute a command as the superuser.
 
-install
+**install :**
 
  This is the install command, used to copy files and set attributes.
 
--o root -g root
+**-o root -g root :**
 
  This sets the owner (-o) to root and the group (-g) to root. It ensures that the kubectl binary is owned by the root user and root group.
 
--m 0755
+**-m 0755 :**
 
  This sets the file permissions (-m) to 0755. It grants read, write, and execute permissions to the owner (root) and read and execute permissions to others. This makes the kubectl binary executable by everyone.
 
-**kubectl**
+**kubectl :**
 
 This is the source file (the kubectl binary you downloaded).
 
-**/usr/local/bin/kubectl**
+**/usr/local/bin/kubectl :**
 
  This is the destination path where the kubectl binary will be installed.
 ```
@@ -233,29 +233,29 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 ```
 sudo usermod -aG docker $USER && newgrp docker
 ```
-**sudo**
+**sudo :**
 
 Runs the command with superuser privileges.
 
-**usermod**
+**usermod :**
 
 Modifies a user account.
 
-**-aG docker** 
+**-aG docker :** 
 
 Adds the user to the specified groups. Here, it's adding the user to the "docker" group.
 
-**$USER**  
+**$USER :**  
 
 Represents the current username.
 
 So, this part is making you a member of the "docker" group.
 
-**newgrp**  
+**newgrp :**  
 
 This command is used to change your current group ID during a login session.
 
-**docker**
+**docker :**
 
 The group you want to switch to.
 ```
@@ -321,11 +321,11 @@ kubectl apply -f app-deployment.yaml
 ```
 vi nginx-service.yaml
 ```
-**vi**
+**vi :**
 
 This is a command-line text editor available on many Unix-like systems. It stands for Visual Editor.
 
-**nginx-service.yaml**
+**nginx-service.yaml :**
 
 This is the filename you want to open in the vi editor. The file extension ".yaml" suggests that you're dealing with a YAML file, which is commonly used for defining Kubernetes resources, and in this case, it could be a service configuration.
 
