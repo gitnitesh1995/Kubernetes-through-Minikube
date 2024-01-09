@@ -172,11 +172,11 @@ This is the name of the Docker image you are running. In this case, it's a simpl
 ```
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 ```
-curl -s [**https://dl.k8s.io/release/stable.txt**](https://dl.k8s.io/release/stable.txt)
+**curl -s [**https://dl.k8s.io/release/stable.txt**](https://dl.k8s.io/release/stable.txt) :**
 
  This command fetches the latest stable version of Kubernetes from the stable.txt file on the Kubernetes release page.
 
-$(curl -L -s [**https://dl.k8s.io/release/stable.txt**](https://dl.k8s.io/release/stable.txt)**)**
+**$(curl -L -s [**https://dl.k8s.io/release/stable.txt**](https://dl.k8s.io/release/stable.txt)**) :**
 
  This part of the command uses command substitution to include the version obtained in step 1 in the URL.<https://dl.k8s.io/release/>\<version>/bin/linux/amd64/kubectl
 
