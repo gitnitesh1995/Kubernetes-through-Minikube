@@ -113,7 +113,7 @@ chmod is a Unix command used to change the permissions of a file or directory.
 
 The a+r specifies the permissions to be added. In this case, it stands for "all users" (owner, group, and others) and "read" permission.
 
-/etc/apt/keyrings/docker.gpg:
+**/etc/apt/keyrings/docker.gpg :**
 
 This is the path of the file for which the permissions are being modified. /etc/apt/keyrings is the directory, and docker.gpg is the specific file.
 
@@ -123,9 +123,11 @@ echo \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
-echo : This command is used to print the Docker repository configuration to the console.
+**echo : **
 
-"deb \[arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https\://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION\_CODENAME") stable"
+This command is used to print the Docker repository configuration to the console.
+
+**deb \[arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https\://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION\_CODENAME") stable :**
 
 This is the actual configuration line that specifies the Docker repository. It includes information about the system architecture, the GPG key for signature verification, the Docker repository URL, and the Ubuntu version codename.
 
