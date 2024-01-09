@@ -39,8 +39,6 @@ Install curl
 ```
 sudo apt update && sudo apt upgrade -y
 ```
-sudo : It stands for "superuser do" and  permits user to execute a command as the superuser 
-
 This command updates the local package database, ensuring your system has the latest information about available packages and their versions and upgrade command upgrades all installed packages to their latest versions. The -y flag is used to automatically answer "yes" to any prompts, making the upgrade process non-interactive
 ```
 sudo apt-get install ca-certificates curl gnupg
